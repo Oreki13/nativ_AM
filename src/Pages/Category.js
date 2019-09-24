@@ -19,8 +19,6 @@ class Category extends Component {
     });
   };
   render() {
-    console.log(this.state);
-
     return (
       <Fragment>
         <Navbar />
@@ -32,9 +30,15 @@ class Category extends Component {
             {this.state.dataCategory.map((category, index) => {
               return (
                 <Conten
+                  key={index}
                   name={category.name}
                   img={category.img}
-                  onPress={() => this.props.navigation.navigate('ItemList')}
+                  id={category.id_kategori}
+                  onPress={() =>
+                    this.props.navigation.navigate('ItemList', {
+                      nameKategori: category.name,
+                    })
+                  }
                 />
               );
             })}
