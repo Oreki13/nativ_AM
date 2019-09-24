@@ -3,6 +3,7 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import Home from '../Pages/Category';
 import User from '../Pages/User';
+import ItemList from '../Pages/ItemList';
 
 const UserStack = createStackNavigator(
   {
@@ -17,6 +18,7 @@ const UserStack = createStackNavigator(
 const HomeStack = createStackNavigator(
   {
     Home,
+    ItemList,
   },
   {
     initialRouteName: 'Home',
@@ -30,7 +32,7 @@ const Router = createSwitchNavigator(
     UserStack,
   },
   {
-    initialRouteName: 'HomeStack',
+    initialRouteName: 'UserStack',
     headerMode: 'none',
   },
 );

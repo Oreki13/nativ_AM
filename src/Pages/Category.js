@@ -1,5 +1,7 @@
 import React, {Fragment, Component} from 'react';
 import {ScrollView, View, StyleSheet, Image} from 'react-native';
+import {getCategory} from '../Publics/Redux/Actions/categoryList';
+import {connect} from 'react-redux';
 
 import Navbar from '../navbar/navbar';
 import Search from '../Search/index';
@@ -7,7 +9,18 @@ import Conten from '../Content/card';
 import Footer from '../Footer/Footer';
 
 class Category extends Component {
+  state = {
+    dataCategory: [],
+  };
+  componentDidMount = async () => {
+    await this.props.dispatch(getCategory());
+    this.setState({
+      dataCategory: this.props.category.result,
+    });
+  };
   render() {
+    console.log(this.state);
+
     return (
       <Fragment>
         <Navbar />
@@ -16,13 +29,18 @@ class Category extends Component {
             <Search />
           </View>
           <View style={styles.card}>
-            <Conten />
-            <Conten />
-            <Conten />
-            <Conten />
-          </View>
-          <View>
-            <Image source={require('../img/gitar2.png')} />
+            {this.state.dataCategory.map((category, index) => {
+              return (
+                <Conten
+                  name={category.name}
+                  img={category.img}
+                  onPress={() => this.props.navigation.navigate('ItemList')}
+                />
+              );
+            })}
+            {/* <Conten
+              onPress={() => this.props.navigation.navigate('ItemList')}
+            /> */}
           </View>
         </ScrollView>
         <Footer />
@@ -43,4 +61,10 @@ const styles = StyleSheet.create({
   search: {marginTop: 8, paddingHorizontal: 10},
 });
 
-export default Category;
+const mapStateToProps = state => {
+  return {
+    category: state.dataList.kategoriList,
+  };
+};
+
+export default connect(mapStateToProps)(Category);

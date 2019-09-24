@@ -6,7 +6,7 @@ import {Card} from 'native-base';
 
 class Conten extends Component {
   render() {
-    console.log(this.props);
+    console.log(this.props.img);
     return (
       <Fragment
         style={{
@@ -15,11 +15,11 @@ class Conten extends Component {
           shadowOpacity: 0.8,
           shadowRadius: 5,
         }}>
-        <TouchableOpacity style={styles.Cards}>
+        <TouchableOpacity style={styles.Cards} onPress={this.props.onPress}>
           <View style={styles.in}>
-            <Text style={styles.texts}>Helloasdaasd</Text>
+            <Text style={styles.texts}>{this.props.name}</Text>
 
-            <Image style={styles.img} source={require('../img/gitar2.png')} />
+            <Image style={styles.img} source={this.props.img} />
           </View>
         </TouchableOpacity>
         {/* <View style={styles.img}>
