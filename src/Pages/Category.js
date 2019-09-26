@@ -1,6 +1,7 @@
 import React, {Fragment, Component} from 'react';
 import {ScrollView, View, StyleSheet, Image, Text} from 'react-native';
 import {getCategory} from '../Publics/Redux/Actions/categoryList';
+import {getUser} from '../Publics/Redux/Actions/user';
 import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import Navbar from '../navbar/navbar';
@@ -18,6 +19,7 @@ class Category extends Component {
     const user_id = await AsyncStorage.getItem('user_id');
 
     await this.props.dispatch(getCategory());
+    await this.props.dispatch(getUser(user_id));
     this.setState({
       dataCategory: this.props.category.result,
       usersId: user_id,

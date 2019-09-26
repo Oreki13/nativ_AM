@@ -2,52 +2,72 @@ const initialState = {
   dataUser: [],
   isLoading: false,
   isFulfielled: false,
-  isRejected: false
+  isRejected: false,
 };
 
 const user = (state = initialState, action) => {
   // console.log(action);
 
   switch (action.type) {
-    case "POST_LOGIN_PENDING":
+    case 'POST_LOGIN_PENDING':
       return {
         ...state,
         isLoading: true,
         isRejected: false,
-        isFulfielled: false
+        isFulfielled: false,
       };
-    case "POST_LOGIN_REJECTED":
+    case 'POST_LOGIN_REJECTED':
       return {
         ...state,
         isLoading: false,
-        isRejected: true
+        isRejected: true,
       };
-    case "POST_LOGIN_FULFILLED":
+    case 'POST_LOGIN_FULFILLED':
       return {
         ...state,
         isLoading: false,
         isFulfielled: true,
-        dataUser: action.payload.data
+        dataUser: action.payload.data,
       };
-    case "POST_REGISTER_PENDING":
+    case 'POST_REGISTER_PENDING':
       return {
         ...state,
         isLoading: true,
         isRejected: false,
-        isFulfielled: false
+        isFulfielled: false,
       };
-    case "POST_REGISTER_REJECTED":
+    case 'POST_REGISTER_REJECTED':
       return {
         ...state,
         isLoading: false,
-        isRejected: true
+        isRejected: true,
       };
-    case "POST_REGISTER_FULFILLED":
+    case 'POST_REGISTER_FULFILLED':
       return {
         ...state,
         isLoading: false,
         isFulfielled: true,
-        dataUser: action.payload.data
+        dataUser: action.payload.data,
+      };
+    case 'GET_USER_PENDING':
+      return {
+        ...state,
+        isLoading: true,
+        isRejected: false,
+        isFulfielled: false,
+      };
+    case 'GET_USER_REJECTED':
+      return {
+        ...state,
+        isLoading: false,
+        isRejected: true,
+      };
+    case 'GET_USER_FULFILLED':
+      return {
+        ...state,
+        isLoading: false,
+        isFulfielled: true,
+        dataUser: action.payload.data,
       };
 
     default:

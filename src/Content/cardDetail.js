@@ -9,8 +9,16 @@ import {
   Body,
   View,
 } from 'native-base';
-
+import {connect} from 'react-redux';
 import {StyleSheet, Image} from 'react-native';
+
+handleWhislist = () => {
+  console.log('Awowkowkowk');
+};
+
+handleCart = () => {
+  console.log('Binggooo');
+};
 
 const cardDetail = props => {
   return (
@@ -41,14 +49,22 @@ const cardDetail = props => {
             </Body>
           </CardItem>
           <CardItem>
-            <Left>
-              <Button transparent textStyle={{color: '#87838B'}}>
-                <Icon name="heart" />
-              </Button>
-              <Button transparent textStyle={{color: '#87838B'}}>
-                <Icon name="cart" />
-              </Button>
-            </Left>
+            {props.dataUser.result.length > 0 ? (
+              <Left>
+                <Button
+                  transparent
+                  textStyle={{color: '#87838B'}}
+                  onPress={handleWhislist}>
+                  <Icon name="heart" />
+                </Button>
+                <Button
+                  transparent
+                  textStyle={{color: '#87838B'}}
+                  onPress={handleCart}>
+                  <Icon name="cart" />
+                </Button>
+              </Left>
+            ) : null}
           </CardItem>
         </Card>
       </View>
@@ -63,4 +79,10 @@ const styles = StyleSheet.create({
   },
 });
 
-export default cardDetail;
+const mapStateToProps = state => {
+  return {
+    dataUser: state.user.dataUser,
+  };
+};
+
+export default connect(mapStateToProps)(cardDetail);

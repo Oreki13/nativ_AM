@@ -10,25 +10,12 @@ class User extends Component {
     return (
       <Fragment>
         <Navbar />
-        <View style={styles.img}>
-          <Thumbnail
-            large
-            source={{
-              uri:
-                'http://pluspng.com/img-png/user-png-icon-male-user-icon-512.png',
-            }}
-          />
-        </View>
 
-        <ProfileItem logOut={this.logout} />
+        <ProfileItem />
         <Footers />
       </Fragment>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  img: {marginTop: 30, alignItems: 'center'},
-});
 
 export default User;

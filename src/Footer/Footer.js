@@ -1,5 +1,5 @@
 import React, {Fragment, Component} from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 
 import {Button, Footer, FooterTab} from 'native-base';
 
@@ -24,18 +24,7 @@ class Footers extends Component {
               <FontAwesomeIcon icon={faHome} color="#7D5B23" />
               <Text style={styles.fontFoot}>Home</Text>
             </Button>
-            <Button
-              vertical
-              onPress={() => this.props.navigation.navigate('Cart')}>
-              <FontAwesomeIcon icon={faShoppingCart} color="#7D5B23" />
-              <Text style={styles.fontFoot}>Cart</Text>
-            </Button>
-            <Button
-              vertical
-              onPress={() => this.props.navigation.navigate('Whislist')}>
-              <FontAwesomeIcon icon={faHeart} color="#7D5B23" />
-              <Text style={styles.fontFoot}>Whislist</Text>
-            </Button>
+
             <Button
               vertical
               onPress={() => this.props.navigation.navigate('User')}>

@@ -23,6 +23,16 @@ export const register = body => {
   };
 };
 
+export const getUser = id => {
+  return {
+    type: 'GET_USER',
+    payload: Axios.get(
+      `http://192.168.100.30:8080/auth/getus/${id}
+    `,
+    ),
+  };
+};
+
 export const logout = () => {
   return {
     type: 'LOGOUT',
