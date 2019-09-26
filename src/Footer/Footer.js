@@ -24,7 +24,9 @@ class Footers extends Component {
               <FontAwesomeIcon icon={faHome} color="#7D5B23" />
               <Text style={styles.fontFoot}>Home</Text>
             </Button>
-            <Button vertical>
+            <Button
+              vertical
+              onPress={() => this.props.navigation.navigate('Cart')}>
               <FontAwesomeIcon icon={faShoppingCart} color="#7D5B23" />
               <Text style={styles.fontFoot}>Cart</Text>
             </Button>

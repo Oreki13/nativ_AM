@@ -6,13 +6,27 @@ import User from '../Pages/User';
 import ItemList from '../Pages/ItemList';
 import Detail from '../Pages/Detail';
 import Whislist from '../Pages/Whislist';
+import Cart from '../Pages/Cart';
+import Login from '../Pages/Auth/login';
+import SearchTab from '../Pages/Search';
 
 const UserStack = createStackNavigator(
   {
     User,
+    Login,
   },
   {
     initialRouteName: 'User',
+    headerMode: 'none',
+  },
+);
+
+const CartStack = createStackNavigator(
+  {
+    Cart,
+  },
+  {
+    initialRouteName: 'Cart',
     headerMode: 'none',
   },
 );
@@ -32,6 +46,7 @@ const HomeStack = createStackNavigator(
     Home,
     ItemList,
     Detail,
+    SearchTab,
   },
   {
     initialRouteName: 'Home',
@@ -44,6 +59,7 @@ const Router = createSwitchNavigator(
     HomeStack,
     UserStack,
     WhislistStack,
+    CartStack,
   },
   {
     initialRouteName: 'HomeStack',

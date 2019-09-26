@@ -1,8 +1,8 @@
 import React, {Fragment, Component} from 'react';
-import {ScrollView, View, StyleSheet, Image} from 'react-native';
+import {ScrollView, View, StyleSheet, Image, Text} from 'react-native';
 import {getCategory} from '../Publics/Redux/Actions/categoryList';
 import {connect} from 'react-redux';
-
+import AsyncStorage from '@react-native-community/async-storage';
 import Navbar from '../navbar/navbar';
 import Search from '../Search/index';
 import Conten from '../Content/card';
@@ -11,11 +11,16 @@ import Footer from '../Footer/Footer';
 class Category extends Component {
   state = {
     dataCategory: [],
+    isLogin: false,
+    usersId: '',
   };
   componentDidMount = async () => {
+    const user_id = await AsyncStorage.getItem('user_id');
+
     await this.props.dispatch(getCategory());
     this.setState({
       dataCategory: this.props.category.result,
+      usersId: user_id,
     });
   };
   render() {
@@ -46,6 +51,7 @@ class Category extends Component {
               onPress={() => this.props.navigation.navigate('ItemList')}
             /> */}
           </View>
+          {this.state.usersId ? <Text>Yayyy</Text> : <Text>Nooooo</Text>}
         </ScrollView>
         <Footer />
       </Fragment>
