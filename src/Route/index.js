@@ -9,11 +9,14 @@ import Whislist from '../Pages/Whislist';
 import Cart from '../Pages/Cart';
 import Login from '../Pages/Auth/login';
 import SearchTab from '../Pages/Search';
-
+import History from '../Pages/History';
+import Register from '../Pages/Auth/registrasi';
 const UserStack = createStackNavigator(
   {
     User,
     Login,
+    History,
+    Register,
   },
   {
     initialRouteName: 'User',

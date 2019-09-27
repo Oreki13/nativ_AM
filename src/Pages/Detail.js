@@ -25,6 +25,8 @@ class Detail extends Component {
     });
   };
   render() {
+    console.log(this.state.detail);
+
     return (
       <Fragment>
         <Navbar />
@@ -38,6 +40,7 @@ class Detail extends Component {
                     names={item.name}
                     img={item.img}
                     detail={item.detail}
+                    idItem={item.id}
                   />
                 );
               })}

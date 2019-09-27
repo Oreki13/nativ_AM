@@ -18,8 +18,6 @@ class ItemList extends Component {
       },
     };
 
-    console.log(itemName);
-
     await this.props.dispatch(getItem(itemName));
     this.setState({itemList: this.props.item.result});
   };
@@ -42,6 +40,7 @@ class ItemList extends Component {
                     key={index}
                     name={item.name}
                     img={item.img}
+                    id={item.id}
                     onPress={() =>
                       this.props.navigation.navigate('Detail', {
                         idItem: item.id,

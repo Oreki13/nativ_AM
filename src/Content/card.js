@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   Cards: {
     maxWidth: 150,
     minWidth: 150,
-    height: 100,
+    height: 120,
     marginRight: 10,
     marginTop: 5,
     backgroundColor: '#F5A623',
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   img: {
     height: 100,
     width: 100,
+    resizeMode: 'contain',
   },
   in: {flexDirection: 'row', padding: 5},
   texts: {fontSize: 12, flex: 1, flexWrap: 'wrap', marginTop: 30},

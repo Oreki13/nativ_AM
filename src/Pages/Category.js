@@ -2,6 +2,8 @@ import React, {Fragment, Component} from 'react';
 import {ScrollView, View, StyleSheet, Image, Text} from 'react-native';
 import {getCategory} from '../Publics/Redux/Actions/categoryList';
 import {getUser} from '../Publics/Redux/Actions/user';
+import {getWhislist} from '../Publics/Redux/Actions/whislist';
+import {getCart} from '../Publics/Redux/Actions/cart';
 import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import Navbar from '../navbar/navbar';
@@ -13,16 +15,16 @@ class Category extends Component {
   state = {
     dataCategory: [],
     isLogin: false,
-    usersId: '',
   };
   componentDidMount = async () => {
     const user_id = await AsyncStorage.getItem('user_id');
 
     await this.props.dispatch(getCategory());
     await this.props.dispatch(getUser(user_id));
+    await this.props.dispatch(getWhislist(user_id));
+    await this.props.dispatch(getCart(user_id));
     this.setState({
       dataCategory: this.props.category.result,
-      usersId: user_id,
     });
   };
   render() {
@@ -53,7 +55,6 @@ class Category extends Component {
               onPress={() => this.props.navigation.navigate('ItemList')}
             /> */}
           </View>
-          {this.state.usersId ? <Text>Yayyy</Text> : <Text>Nooooo</Text>}
         </ScrollView>
         <Footer />
       </Fragment>

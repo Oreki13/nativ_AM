@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {View, Text, StyleSheet, ToastAndroid} from 'react-native';
 import {Container, Content, Form, Item, Input, Button} from 'native-base';
 import {connect} from 'react-redux';
-import {login} from '../../Publics/Redux/Actions/user';
+import {register} from '../../Publics/Redux/Actions/user';
 import Header from '../../navbar/navbar';
 import Footers from '../../Footer/Footer';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -10,8 +10,11 @@ import AsyncStorage from '@react-native-community/async-storage';
 class Login extends Component {
   state = {
     user: {
+      fullname: '',
       email: '',
       password: '',
+      image: 'default',
+      role_id: 2,
     },
     error: false,
     usersId: 0,
@@ -24,34 +27,16 @@ class Login extends Component {
   };
 
   goo = () => {
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Login');
   };
 
   submit = async () => {
-    await this.props
-      .dispatch(login(this.state.user))
-      .then(async res => {
-        if (res.value.data.error !== null) {
-          ToastAndroid.show(
-            'Email atau password salah',
-            ToastAndroid.LONG,
-            ToastAndroid.CENTER,
-          );
-        } else {
-          const user_id = this.props.dataUser.result.userId.toString();
-          const role_id = this.props.dataUser.result.role_id.toString();
-
-          await AsyncStorage.setItem('user_id', user_id);
-
-          await AsyncStorage.setItem('role_id', role_id);
-
-          ToastAndroid.show('Sukses', ToastAndroid.LONG, ToastAndroid.CENTER);
-          this.props.navigation.navigate('Home');
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
+    await this.props.dispatch(register(this.state.user));
+    if (this.props.dataUser.error !== null) {
+      this.setState({error: true});
+    } else {
+      this.goo();
+    }
   };
 
   render() {
@@ -60,12 +45,21 @@ class Login extends Component {
         <Header />
         <Content>
           <View style={styles.logins}>
-            <Text style={styles.logtex}>Login</Text>
+            <Text style={styles.logtex}>Create Account</Text>
             {this.state.error ? (
               <Text style={{color: 'red'}}>Email Atau Password salah</Text>
             ) : null}
           </View>
           <Form>
+            <Item>
+              <Input
+                type="text"
+                id="fullname"
+                placeholder="fullname"
+                name="email"
+                onChangeText={text => this.handleForm('fullname', text)}
+              />
+            </Item>
             <Item>
               <Input
                 type="text"
@@ -87,7 +81,7 @@ class Login extends Component {
           </Form>
           <View style={styles.buton}>
             <Button warning style={styles.butlog} onPress={() => this.submit()}>
-              <Text> Login </Text>
+              <Text> Register</Text>
             </Button>
           </View>
         </Content>

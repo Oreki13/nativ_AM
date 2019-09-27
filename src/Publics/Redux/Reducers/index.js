@@ -3,14 +3,17 @@ import dataList from './dataList';
 import user from './user';
 import prodacts from './prodacts';
 // import dropdown from "./forDropdown";
-// import cart from "./cart";
-// import whislist from "./whislist";
-// import transaction from "./transaction";
+import cart from './cart';
+import whislist from './whislist';
+import transaction from './transaction';
 
 const appReducer = combineReducers({
   dataList,
   user,
   prodacts,
+  whislist,
+  cart,
+  transaction,
 });
 
 const rootReducer = (state, action) => {
