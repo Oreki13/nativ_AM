@@ -17,29 +17,11 @@ const UserStack = createStackNavigator(
     Login,
     History,
     Register,
-  },
-  {
-    initialRouteName: 'User',
-    headerMode: 'none',
-  },
-);
-
-const CartStack = createStackNavigator(
-  {
+    Whislist,
     Cart,
   },
   {
-    initialRouteName: 'Cart',
-    headerMode: 'none',
-  },
-);
-
-const WhislistStack = createStackNavigator(
-  {
-    Whislist,
-  },
-  {
-    initialRouteName: 'Whislist',
+    initialRouteName: 'User',
     headerMode: 'none',
   },
 );
@@ -61,8 +43,6 @@ const Router = createSwitchNavigator(
   {
     HomeStack,
     UserStack,
-    WhislistStack,
-    CartStack,
   },
   {
     initialRouteName: 'HomeStack',

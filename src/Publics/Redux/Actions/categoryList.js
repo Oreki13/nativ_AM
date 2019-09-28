@@ -5,7 +5,7 @@ export const getCategory = () => {
   return {
     type: 'GET_CATEGORY',
     payload: Axios.get(
-      `https://upgan.herokuapp.com/store/category
+      `http://192.168.100.30:8080/store/category
     `,
     ),
   };

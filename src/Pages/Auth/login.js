@@ -39,11 +39,8 @@ class Login extends Component {
           );
         } else {
           const user_id = this.props.dataUser.result.userId.toString();
-          const role_id = this.props.dataUser.result.role_id.toString();
 
           await AsyncStorage.setItem('user_id', user_id);
-
-          await AsyncStorage.setItem('role_id', role_id);
 
           ToastAndroid.show('Sukses', ToastAndroid.LONG, ToastAndroid.CENTER);
           this.props.navigation.navigate('Home');

@@ -17,7 +17,7 @@ class ItemList extends Component {
         type: this.props.navigation.getParam('nameKategori'),
       },
     };
-
+    console.log(itemName);
     await this.props.dispatch(getItem(itemName));
     this.setState({itemList: this.props.item.result});
   };

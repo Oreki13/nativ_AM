@@ -21,7 +21,7 @@ import {StyleSheet, Image, ToastAndroid} from 'react-native';
 class cardDetail extends Component {
   handleWhislist = () => {
     const curentItem = this.props.idItem;
-    const item = this.props.whislist.result;
+    const item = this.props.whislist;
     const dataId = this.props.dataUser.result;
     const iduser = dataId[0].userId;
 
