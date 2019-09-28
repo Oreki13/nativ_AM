@@ -27,9 +27,9 @@ class Whislist extends Component {
   };
 
   handleCart = () => {
-    const tmpItem = this.state.data[0];
+    const tmpItem = this.state.datas[0];
     const idItem = tmpItem.id_item;
-    const tmpiduser = this.state.data[0];
+    const tmpiduser = this.state.datas[0];
     const idUser = tmpiduser.id_user;
     const item = this.props.cart.result;
 
@@ -49,7 +49,7 @@ class Whislist extends Component {
                 );
                 this.props.dispatch(deleteWhislist(idUser, idItem)).then(() => {
                   this.props.dispatch(getWhislist(idUser));
-                  this.setState({data: this.props.whislist});
+                  this.setState({datas: this.props.whislist});
                 });
               })
               .catch(err => console.log(err));
@@ -65,7 +65,7 @@ class Whislist extends Component {
           );
           this.props.dispatch(deleteWhislist(idUser, idItem)).then(() => {
             this.props.dispatch(getWhislist(idUser));
-            this.setState({data: this.props.whislist});
+            this.setState({datas: this.props.whislist});
           });
         })
         .catch(err => console.log(err));
@@ -73,9 +73,9 @@ class Whislist extends Component {
   };
 
   handleRemove = () => {
-    const tmpItem = this.state.data[0];
+    const tmpItem = this.state.datas[0];
     const idItem = tmpItem.id_item;
-    const tmpiduser = this.state.data[0];
+    const tmpiduser = this.state.datas[0];
     const idUser = tmpiduser.id_user;
     this.props
       .dispatch(deleteWhislist(idUser, idItem))
@@ -86,7 +86,7 @@ class Whislist extends Component {
           ToastAndroid.CENTER,
         );
         this.props.dispatch(getWhislist(idUser));
-        this.setState({data: this.props.whislist});
+        this.setState({datas: this.props.whislist});
       })
       .catch(err => console.log(err));
   };
