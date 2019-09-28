@@ -79,8 +79,6 @@ class Cart extends Component {
   };
 
   render() {
-    console.log(this.state);
-
     return (
       <Fragment>
         <Navbar />
@@ -103,7 +101,13 @@ class Cart extends Component {
               <Left>
                 <Button
                   onPress={this.handleCheckout}
-                  style={{width: 140, backgroundColor: 'white', padding: 10}}>
+                  style={{
+                    width: 140,
+                    backgroundColor: '#d9b234',
+                    padding: 10,
+                    borderRadius: 15,
+                    margin: 10,
+                  }}>
                   <Icon style={{color: 'black'}} name="cart" />
                   <Text>Checkout</Text>
                 </Button>

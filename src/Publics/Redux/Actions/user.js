@@ -5,7 +5,7 @@ export const login = body => {
   return {
     type: 'POST_LOGIN',
     payload: Axios.post(
-      `http://192.168.100.30:8080/auth/login
+      `https://upgan.herokuapp.com/auth/login
     `,
       body,
     ),
@@ -16,7 +16,7 @@ export const register = body => {
   return {
     type: 'POST_REGISTER',
     payload: Axios.post(
-      `http://192.168.100.30:8080/auth/register
+      `https://upgan.herokuapp.com/auth/register
     `,
       body,
     ),
@@ -27,7 +27,7 @@ export const getUser = id => {
   return {
     type: 'GET_USER',
     payload: Axios.get(
-      `http://192.168.100.30:8080/auth/getus/${id}
+      `https://upgan.herokuapp.com/auth/getus/${id}
     `,
     ),
   };

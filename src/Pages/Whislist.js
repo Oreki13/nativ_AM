@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 class Whislist extends Component {
   state = {
-    data: [],
+    datas: [],
     dataId: '',
   };
 
@@ -23,7 +23,7 @@ class Whislist extends Component {
       })
       .catch(err => console.log(err));
     await this.props.dispatch(getWhislist(this.state.dataId));
-    this.setState({data: this.props.whislist});
+    this.setState({datas: this.props.whislist});
   };
 
   handleCart = () => {
@@ -97,8 +97,8 @@ class Whislist extends Component {
       <Fragment>
         <Navbar />
         <ScrollView>
-          {this.state.data ? (
-            this.state.data.map((dat, index) => {
+          {this.state.datas ? (
+            this.state.datas.map((dat, index) => {
               return (
                 <Conten
                   key={index}
