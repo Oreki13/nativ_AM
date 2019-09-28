@@ -45,6 +45,7 @@ class User extends Component {
             this.state.user.map((dat, index) => {
               return (
                 <ProfileItem
+                  key={index}
                   name={dat.name}
                   email={dat.email}
                   logouts={this.logout}

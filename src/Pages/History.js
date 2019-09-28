@@ -12,16 +12,30 @@ import {
 } from 'native-base';
 import Navbar from '../navbar/navbar';
 import Footer from '../Footer/Footer';
+import {getTransactionId} from '../Publics/Redux/Actions/transaction';
 import {connect} from 'react-redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class History extends Component {
   state = {
-    data: [],
+    dataTransaction: [],
+    userId: '',
   };
   componentDidMount = async () => {
-    // await this.props.dispatch(getTransactionId(id));
-    this.setState({data: this.props.transactions.response});
+    await AsyncStorage.getItem('user_id')
+      .then(value => {
+        if (value !== null) {
+          value = parseInt(value);
+          this.setState({userId: value});
+        }
+      })
+      .catch(err => console.log(err));
+    console.log('asdasdad');
+
+    await this.props.dispatch(getTransactionId(this.state.userId));
+    this.setState({dataTransaction: this.props.transactions});
   };
+
   convertTimeStamp = timeStamp => {
     timeStamp.toString();
     return timeStamp.slice(0, 10);
@@ -34,8 +48,8 @@ class History extends Component {
         <Navbar />
         <ScrollView>
           <Content padder>
-            {this.state.data !== undefined ? (
-              this.state.data.map((dat, index) => {
+            {this.state.dataTransaction ? (
+              this.state.dataTransaction.map((dat, index) => {
                 return (
                   <>
                     <Card>
@@ -47,7 +61,7 @@ class History extends Component {
                       </CardItem>
                       <CardItem bordered>
                         <Body>
-                          {this.state.data[index].enrollment.map(
+                          {this.state.dataTransaction[index].enrollment.map(
                             (lec, index) => (
                               <>
                                 <Text>{lec.name}</Text>
@@ -75,8 +89,7 @@ class History extends Component {
 
 const mapStateToProps = state => {
   return {
-    dataUser: state.user.dataUser,
-    transactions: state.transaction.transactionList,
+    transactions: state.transaction.transactionList.response,
   };
 };
 

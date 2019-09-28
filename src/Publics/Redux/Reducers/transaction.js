@@ -2,71 +2,71 @@ const initialState = {
   transactionList: [],
   isLoading: false,
   isFulfielled: false,
-  isRejected: false
+  isRejected: false,
 };
 
 const transaction = (state = initialState, action) => {
   // console.log(action);
 
   switch (action.type) {
-    case "GET_TRANSACTION_PENDING":
+    case 'GET_TRANSACTION_PENDING':
       return {
         ...state,
         isLoading: true,
         isRejected: false,
-        isFulfielled: false
+        isFulfielled: false,
       };
-    case "GET_TRANSACTION_REJECTED":
+    case 'GET_TRANSACTION_REJECTED':
       return {
         ...state,
         isLoading: false,
-        isRejected: true
+        isRejected: true,
       };
-    case "GET_TRANSACTION_FULFILLED":
+    case 'GET_TRANSACTION_FULFILLED':
       return {
         ...state,
         isLoading: false,
         isFulfielled: true,
-        transactionList: action.payload.data
+        transactionList: action.payload.data,
       };
-    case "GET_TRANSACTIONID_PENDING":
+    case 'GET_TRANSACTIONID_PENDING':
       return {
         ...state,
         isLoading: true,
         isRejected: false,
-        isFulfielled: false
+        isFulfielled: false,
       };
-    case "GET_TRANSACTIONID_REJECTED":
+    case 'GET_TRANSACTIONID_REJECTED':
       return {
         ...state,
         isLoading: false,
-        isRejected: true
+        isRejected: true,
       };
-    case "GET_TRANSACTIONID_FULFILLED":
+    case 'GET_TRANSACTIONID_FULFILLED':
       return {
         ...state,
         isLoading: false,
         isFulfielled: true,
-        transactionList: action.payload.data
+        transactionList: action.payload.data,
       };
-    case "POST_TRANSACTION_PENDING":
+    case 'POST_TRANSACTION_PENDING':
       return {
         ...state,
         isLoading: true,
         isRejected: false,
-        isFulfielled: false
+        isFulfielled: false,
       };
-    case "POST_TRANSACTION_REJECTED":
+    case 'POST_TRANSACTION_REJECTED':
       return {
         ...state,
         isLoading: false,
-        isRejected: true
+        isRejected: true,
       };
-    case "POST_TRANSACTION_FULFILLED":
+    case 'POST_TRANSACTION_FULFILLED':
       return {
         ...state,
         isLoading: false,
-        isFulfielled: true
+        isFulfielled: true,
       };
 
     default:
