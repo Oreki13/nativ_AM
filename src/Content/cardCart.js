@@ -12,32 +12,9 @@ import {
   View,
 } from 'native-base';
 import {ScrollView, StyleSheet, Image, ToastAndroid} from 'react-native';
-import {connect} from 'react-redux';
-import {deleteCart, getCart} from '../Publics/Redux/Actions/cart';
 import {withNavigation} from 'react-navigation';
-import {postTransaction} from '../Publics/Redux/Actions/transaction';
 
 class cardCart extends Component {
-  goRef = () => {
-    this.props.navigation.navigate('Home');
-  };
-  handleDelete = async () => {
-    const iduser = this.props.idUser;
-    const idItem = this.props.id;
-
-    await this.props
-      .dispatch(deleteCart(iduser, idItem))
-      .then(() => {
-        ToastAndroid.show(
-          'Data Dihapus',
-          ToastAndroid.LONG,
-          ToastAndroid.CENTER,
-        );
-        this.props.dispatch(getCart(iduser));
-        this.goRef();
-      })
-      .catch(err => console.log(err));
-  };
   render() {
     return (
       <Fragment>
@@ -69,7 +46,7 @@ class cardCart extends Component {
               </CardItem>
               <CardItem>
                 <Right>
-                  <Button transparent onPress={this.handleDelete}>
+                  <Button transparent onPress={this.props.delete}>
                     <Icon active name="trash" />
                     <Text>Delete</Text>
                   </Button>
@@ -83,4 +60,4 @@ class cardCart extends Component {
   }
 }
 
-export default withNavigation(connect()(cardCart));
+export default withNavigation(cardCart);

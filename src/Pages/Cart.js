@@ -3,25 +3,56 @@ import React, {Component, Fragment} from 'react';
 import Navbar from '../navbar/navbar';
 import Footers from '../Footer/Footer';
 import Conten from '../Content/cardCart';
+import AsyncStorage from '@react-native-community/async-storage';
 import {ScrollView, Text, View, ToastAndroid} from 'react-native';
 import {Button, Icon, Left} from 'native-base';
 import {connect} from 'react-redux';
 import {postTransaction} from '../Publics/Redux/Actions/transaction';
-import {deleteCart} from '../Publics/Redux/Actions/cart';
+import {deleteCart, getCart} from '../Publics/Redux/Actions/cart';
 
 class Cart extends Component {
   state = {
     cart: [],
+    dataId: '',
   };
   componentDidMount = async () => {
+    await AsyncStorage.getItem('user_id')
+      .then(value => {
+        if (value !== null) {
+          value = parseInt(value);
+          this.setState({dataId: value});
+        }
+      })
+      .catch(err => console.log(err));
+    console.log('Awdfs');
+
+    await this.props.dispatch(getCart(this.state.dataId));
     this.setState({cart: this.props.cart.result});
   };
 
-  handleCheckout = () => {
-    const createId = this.state.cart;
+  handleDelete = () => {
     const createIdItem = this.state.cart;
     const idItem = createIdItem[0].id_item;
-    const id = createId[0].id_user;
+    const iduser = this.state.dataId;
+
+    this.props
+      .dispatch(deleteCart(iduser, idItem))
+      .then(() => {
+        ToastAndroid.show(
+          'Data Dihapus',
+          ToastAndroid.LONG,
+          ToastAndroid.CENTER,
+        );
+        this.props.dispatch(getCart(iduser));
+        this.setState({cart: this.props.cart.result});
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleCheckout = () => {
+    const createIdItem = this.state.cart;
+    const idItem = createIdItem[0].id_item;
+    const id = this.state.dataId;
 
     let tmp = [];
     this.state.cart.map(car => {
@@ -39,7 +70,10 @@ class Cart extends Component {
       .then(() => {
         ToastAndroid.show('Checkout', ToastAndroid.LONG, ToastAndroid.CENTER);
 
-        this.props.dispatch(deleteCart(id, idItem));
+        this.props.dispatch(deleteCart(id, idItem)).then(() => {
+          this.props.dispatch(getCart(id));
+          this.setState({cart: this.props.cart.result});
+        });
       })
       .catch(err => console.log(err));
   };
@@ -62,6 +96,7 @@ class Cart extends Component {
                     price={dat.price}
                     img={dat.img}
                     idUser={dat.id_user}
+                    delete={this.handleDelete}
                   />
                 );
               })}
